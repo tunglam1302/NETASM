@@ -1,0 +1,161 @@
+﻿@model IEnumerable<MVC.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="top-bar">
+    <div class="container clearfix">
+        <div class="row">
+            <div class="col-4">
+                <div class="no-m">
+                    <div class="t-info">
+                        <i class="fa fa-phone"></i>
+                        <a href="#">0702090269</a>
+                    </div>
+                    |
+                    <div class="t-info">
+                        <i class="fa fa-envelope"></i>
+                        <a href="#">lamvutung39@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 top-search">
+                <form method="post" action="/Products/Index">
+                    <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm" value="@ViewBag.Keyword">
+                </form>
+            </div>
+            <div class="col-4 top-links">
+                <ul>
+                    <li>
+                        <a href="#">Giới thiệu</a>
+                    </li>
+                    <li>
+                        <a href="#">Liên hệ</a>
+                    </li>
+                    <li>
+                        <a href="#">Hệ thống siêu  thị</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar-inner">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav text-center" style="margin: auto;">
+                    <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
+                        <a href="/Views/Products/Index" class="nav-link">Trang chủ</a>
+                    </li>
+                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <a href="#" class="nav-link">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <a href="#" class="nav-link">Hệ thống cửa hàng</a>
+                    </li>
+                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <a href="#" class="nav-link">Phản hồi</a>
+                    </li>
+                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <a href="#" class="nav-link">Liên hệ</a>
+                    </li>
+
+                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <a href="/Views/Cart/Index" class="nav-link"><i class="fa fa-shopping-cart fa-lg"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="c-banner">
+    <div class="container clearfix">
+        <div class="row">
+            <div class="col-3">
+                <div class="feature-box">
+                    <div class="fbox-icon">
+                        <img src="http://theme.hstatic.net/1000074340/1000280242/14/policies_icon_1.png?v=83">
+                    </div>
+                    <h3>Miễn phí giao hàng</h3>
+                    <p>Nhận hàng trong vòng 3 ngày</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="feature-box">
+                    <div class="fbox-icon">
+                        <img src="http://theme.hstatic.net/1000074340/1000280242/14/policies_icon_2.png?v=83">
+                    </div>
+                    <h3>Quà tặng</h3>
+                    <p>Nhiều quà tặng ưu đãi và hấp dẫn</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="feature-box">
+                    <div class="fbox-icon">
+                        <img src="http://theme.hstatic.net/1000074340/1000280242/14/policies_icon_3.png?v=83">
+                    </div>
+                    <h3>Bảo đảm chất lượng</h3>
+                    <p>Sản phẩm đã được kiểm định</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="feature-box">
+                    <div class="fbox-icon">
+                        <img src="http://theme.hstatic.net/1000074340/1000280242/14/policies_icon_4.png?v=83">
+                    </div>
+                    <h3>
+                        HOTLINE:
+                        <a href="#">0702090269</a>
+                    </h3>
+                    <p>Dịch vụ hỗ trợ bạn 24/7</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="index-product">
+    <div class="container">
+        <div class="block-title">
+            <h3>Sản Phẩm</h3>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-3 product-single">
+                            <div class="product clearfix">
+                                <div class="product-image">
+                                    <a href="#">
+                                        <img src="@Html.DisplayFor(modelItem => item.Image)">
+                                    </a>
+                                </div>
+                                <div class="product-desc">
+                                    <div class="products-info" style="text-align: center;">
+                                        <a class="products-name" href="#">@Html.DisplayFor(modelItem => item.Name)</a>
+                                    </div>
+                                    <div class="products-price">
+                                        <p class="price-box">
+                                            <span class="price-item"> @Html.DisplayFor(modelItem => item.Price)</span>
+                                        </p>
+                                    </div>
+                                    <div class="products-add">
+                                        <form>
+                                            <button class="btn btn-danger add-to-cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                @Html.ActionLink("Buy", "Buy", "Cart", new { id = item.Id, quantity = 1 }, null)
+                                            </button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

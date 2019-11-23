@@ -1,0 +1,107 @@
+﻿@using MVC.Models
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cart</title>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container clearfix">
+            <div class="row">
+                <div class="col-4">
+                    <div class="no-m">
+                        <div class="t-info">
+                            <i class="fa fa-phone"></i>
+                            <a href="#">0702090269</a>
+                        </div>
+                        |
+                        <div class="t-info">
+                            <i class="fa fa-envelope"></i>
+                            <a href="#">lamvutung39@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 top-search">
+                    <form method="post" action="/Products/Index">
+                        <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm" value="@ViewBag.Keyword">
+                    </form>
+                </div>
+                <div class="col-4 top-links">
+                    <ul>
+                        <li>
+                            <a href="#">Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a href="#">Liên hệ</a>
+                        </li>
+                        <li>
+                            <a href="#">Hệ thống siêu  thị</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-inner">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav text-center" style="margin: auto;">
+                        <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
+                            <a href="/Views/Products/Index" class="nav-link">Trang chủ</a>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <a href="#" class="nav-link">Sản phẩm</a>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <a href="#" class="nav-link">Hệ thống cửa hàng</a>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <a href="#" class="nav-link">Phản hồi</a>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <a href="#" class="nav-link">Liên hệ</a>
+                        </li>
+
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <a href="/Views/Cart/Index" class="nav-link"><i class="fa fa-shopping-cart fa-lg"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <h3>Cart Page</h3>
+    <table class="table">
+        <tr>
+            <th>Option</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        @if (Session["cart"] != null)
+        {
+            foreach (Item item in (List<Item>)Session["cart"])
+            {
+                <tr>
+                    <td><a href="@Url.Action("Remove", "Cart", new { id = item.Product.Id })">Remove</a></td>
+                    <td>@item.Product.Id</td>
+                    <td>@item.Product.Name</td>
+                    <td><img src="@item.Product.Image" width="60" /> </td>
+                    <th>@item.Product.Category.Name</th>
+                    <td>@item.Product.Price</td>
+                    <td><input type="number" name="quantity" class="@item.Product.Id" value="@item.Quantity" min="0" max="10" /></td>
+                </tr>
+            }
+        }
+    </table>
+
+    <br>
+</body>
+</html>

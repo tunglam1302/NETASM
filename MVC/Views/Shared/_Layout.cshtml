@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Baby Shop</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+@RenderBody()
+<div class="container">
+    <div class="page-footer">
+        <div class="footer-box">
+            <div class=" about-beauty">
+                <div class="about-name">Baby Shop</div>
+                <div class="contact">
+                    <div><strong>Address:</strong>17B Cau Giay Street, Ba Dinh District, Hanoi</div>
+                    <div><strong>Phone number:</strong> 0702090269</div>
+                    <div>
+                        <strong>Email:&nbsp;</strong><a href="#"><span style="color:#f36d00;">lamvutung39@gmail.com</span></a>
+                    </div>
+                </div>
+            </div>
+            <ul class=" link-beauty" >
+                <li><a href="#">Credits</a></li>
+                <li><a href="#">Privacy policy</a></li>
+                <li><a href="#">Terms of use</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>
+
